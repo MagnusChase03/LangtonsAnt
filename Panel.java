@@ -7,6 +7,7 @@ public class Panel extends JPanel implements Runnable {
     private int x;
     private int y;
     private int direction;
+    private boolean canRun;
 
     Panel() {
     
@@ -25,11 +26,12 @@ public class Panel extends JPanel implements Runnable {
         x = 25;
         y = 18;
         direction = 90;
+        canRun = true;
     
     }
     
     private void update() {
-    
+        
         if (grid[y][x].equals(Color.WHITE)) {
         
             direction += 90;
@@ -71,12 +73,18 @@ public class Panel extends JPanel implements Runnable {
                 break;
         
         }
+        
+        if (x >= 50 || y >= 37 || x < 0 || y < 0) {
+        
+            canRun = false;
+        
+        }
     
     }
     
     public void run() {
     
-        while (true) {
+        while (canRun) {
         
             try {
             
